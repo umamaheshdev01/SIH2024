@@ -10,6 +10,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
+import {BentoGridDemo} from '@/components/ui/bentogrid'
 
 export default function DashboardPage() {
   return (
@@ -27,7 +28,11 @@ export default function DashboardPage() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <PlaceholderContent/>
+      <PlaceholderContent>
+
+        <BentoGridDemo></BentoGridDemo>
+
+      </PlaceholderContent>
 
     </ContentLayout>
   );
