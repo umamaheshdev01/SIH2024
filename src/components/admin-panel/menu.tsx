@@ -3,7 +3,16 @@
 import Link from "next/link";
 import { Ellipsis, LogOut } from "lucide-react";
 import { usePathname } from "next/navigation";
-
+import { createClient } from '@supabase/supabase-js';
+import {
+  Tag,
+  Users,
+  Settings,
+  Bookmark,
+  SquarePen,
+  LayoutGrid,
+  LucideIcon
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getMenuList } from "@/lib/menu-list";
 import { Button } from "@/components/ui/button";
@@ -15,14 +24,85 @@ import {
   TooltipContent,
   TooltipProvider
 } from "@/components/ui/tooltip";
+import { useEffect, useState } from "react";
+import { useUser } from "@clerk/nextjs";
+
+const supabaseUrl = 'https://ymjsanlykbfwjrxbvzej.supabase.co/';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InltanNhbmx5a2Jmd2pyeGJ2emVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjUwNDU4NzcsImV4cCI6MjA0MDYyMTg3N30.wjk5gH-BJpazZeABuiXxUY8C2WIbRgh8C3soTIq7I0M';
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+type Submenu = {
+  href: string;
+  label: string;
+  active: boolean;
+};
+
+type Menu = {
+  href: string;
+  label: string;
+  active: boolean;
+  icon: LucideIcon;
+  submenus: Submenu[];
+};
+
+type Group = {
+  groupLabel: string;
+  menus: Menu[];
+};
 
 interface MenuProps {
   isOpen: boolean | undefined;
 }
 
 export function Menu({ isOpen }: MenuProps) {
+  const { user } = useUser();
   const pathname = usePathname();
-  const menuList = getMenuList(pathname);
+  const [menuList, setMenuList] = useState<Group[] | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchedMenuList = getMenuList(pathname);
+    setMenuList(fetchedMenuList as any);
+  }, [pathname]);
+
+  useEffect(() => {
+    const fetchMenuData = async () => {
+      const name = user?.username;
+
+      if (name) {
+        const { data, error } = await supabase
+          .from('Members')
+          .select('*,Classes(*)')
+          .eq('user', name);
+
+        if (error) {
+          console.error("Error fetching data: ", error);
+          return;
+        }
+
+        if (data && menuList) {
+          const classNames = data.map((e: any) => e.Classes.name);
+          const submenus = classNames.map((className: string) => ({
+            href: `/${className}`,
+            label: `${className}`,
+            active: false,
+          }));
+
+          const updatedMenuList = [...menuList];
+          updatedMenuList[1].menus[0].submenus = submenus;
+
+          setMenuList(updatedMenuList);
+        }
+      }
+      setIsLoading(false);
+    };
+
+    fetchMenuData();
+  }, [user, menuList]);
+
+  if (isLoading || !menuList) {
+    return <div></div>; 
+  }
 
   return (
     <ScrollArea className="[&>div>div[style]]:!block">

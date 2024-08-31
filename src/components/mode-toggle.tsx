@@ -11,11 +11,13 @@ import {
   TooltipTrigger,
   TooltipProvider
 } from "@/components/ui/tooltip";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 export function ModeToggle() {
   const { setTheme, theme } = useTheme();
 
   return (
+    <>
     <TooltipProvider disableHoverableContent>
       <Tooltip delayDuration={100}>
         <TooltipTrigger asChild>
@@ -33,5 +35,13 @@ export function ModeToggle() {
         <TooltipContent side="bottom">Switch Theme</TooltipContent>
       </Tooltip>
     </TooltipProvider>
+    <br></br>
+    <SignedIn>
+      <UserButton></UserButton>
+    </SignedIn>
+    <SignedOut>
+      <SignInButton></SignInButton>
+    </SignedOut>
+    </>
   );
 }

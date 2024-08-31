@@ -5,6 +5,8 @@ import { ArrowRightIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
+import { SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
+import { SignedIn } from "@clerk/nextjs";
 
 export default function HomePage() {
   return (
@@ -15,9 +17,9 @@ export default function HomePage() {
             href="/"
             className="flex justify-start items-center hover:opacity-85 transition-opacity duration-300"
           >
-            <LibraryBig className="w-8 h-8 mr-3" />
+            <LibraryBig className="w-7 h-7 mr-3" />
             
-            <span className="font-bold text-2xl">Classroom</span>
+            <span className="font-bold text-xl">Classroom</span>
             <span className="sr-only">shadcn/ui sidebar</span>
           </Link>
           <nav className="ml-auto flex items-center gap-2">
@@ -44,21 +46,36 @@ export default function HomePage() {
             solve real-world problems, and make learning an adventure.
             </span>
             <div className="flex w-full items-center justify-center space-x-4 py-4 md:pb-6">
+
+              <SignedOut>
+                
             <Button variant="outline" asChild>
-                <Link
-                  href="https://ui.shadcn.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+            <SignInButton>
                   Sign Up
-                </Link>
+                  </SignInButton>
               </Button>
+             
               <Button variant="default" asChild>
-                <Link href="/dashboard">
+              <SignUpButton>
                   Login
-                  <ArrowRightIcon className="ml-2" />
-                </Link>
+                  </SignUpButton>
+                
               </Button>
+              </SignedOut>
+
+              <SignedIn>
+
+              <Button variant="outline" asChild>
+                <Link href={'/dashboard'}>Dive In</Link>
+              </Button>
+
+              <Button variant="default" asChild>
+                <Link href={'/dashboard'}>Classes</Link>
+              </Button>
+                
+              </SignedIn>
+
+              
         
             </div>
           </section>
