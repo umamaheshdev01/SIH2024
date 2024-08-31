@@ -35,7 +35,7 @@ export function getMenuList(pathname: string): Group[] {
         {
           href: "/dashboard",
           label: "Manage",
-          active: pathname.includes("/dashboard"),
+          active: false,
           icon: LayoutGrid,
           submenus: []
         }

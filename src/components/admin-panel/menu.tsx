@@ -81,10 +81,10 @@ export function Menu({ isOpen }: MenuProps) {
         }
 
         if (data && menuList) {
-          const classNames = data.map((e: any) => e.Classes.name);
-          const submenus = classNames.map((className: string) => ({
-            href: `/${className}`,
-            label: `${className}`,
+          const classNames = data.map((e: any) => e.Classes);
+          const submenus = classNames.map((classname: any) => ({
+            href: `/${classname.id}`,
+            label: `${classname.name}`,
             active: false,
           }));
 
