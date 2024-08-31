@@ -7,6 +7,7 @@ import { createClient } from '@supabase/supabase-js';
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { Dialog } from "@headlessui/react";
+import { useRouter } from "next/navigation";
 
 // Initialize Supabase client
 const supabaseUrl = 'https://ymjsanlykbfwjrxbvzej.supabase.co';
@@ -14,6 +15,7 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export function ClassList() {
+  const navigate = useRouter()
   const { user } = useUser();
   const [classes, setClasses] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -83,11 +85,13 @@ export function ClassList() {
   const handleCreateClass = async () => {
     await addAdmin(user?.username, className);
     setCreateModalOpen(false);
+    navigate.replace('/dashboard')
   };
 
   const handleJoinClass = async () => {
     await addMember(user?.username, classCode);
     setJoinModalOpen(false);
+    navigate.replace('/dashboard')
   };
 
   if (loading) {
