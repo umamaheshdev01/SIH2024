@@ -10,18 +10,13 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
-<<<<<<< HEAD
-
-import Alert from "@/components/ui/alert";
-=======
 import {BentoGridDemo} from '@/components/ui/bentogrid'
 import { ClassList } from "@/components/component/class-list";
-import Dash from "./Dash";
->>>>>>> 2f268695705be58a24bcc69c9879b9ecbf6dc421
+import Todod from "./Todod";
 
 export default function DashboardPage() {
   return (
-    <ContentLayout title="Dashboard">
+    <ContentLayout title="To do">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -31,23 +26,19 @@ export default function DashboardPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Dashboard</BreadcrumbPage>
+            <BreadcrumbPage>To do</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
       <PlaceholderContent>
-<<<<<<< HEAD
-        <></>
-      </PlaceholderContent>
-=======
 
         {/* <BentoGridDemo></BentoGridDemo> */}
 
-         <Dash></Dash>
+    
+          <Todod></Todod>
 
       </PlaceholderContent>
 
->>>>>>> 2f268695705be58a24bcc69c9879b9ecbf6dc421
     </ContentLayout>
   );
 }

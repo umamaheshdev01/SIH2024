@@ -10,44 +10,37 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
-<<<<<<< HEAD
-
-import Alert from "@/components/ui/alert";
-=======
 import {BentoGridDemo} from '@/components/ui/bentogrid'
 import { ClassList } from "@/components/component/class-list";
-import Dash from "./Dash";
->>>>>>> 2f268695705be58a24bcc69c9879b9ecbf6dc421
+import Attendance from "../../../components/Attendance";
 
 export default function DashboardPage() {
   return (
-    <ContentLayout title="Dashboard">
+    <ContentLayout title="Attendance">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href="/">Home</Link>
+              <Link href="/">Attendance</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Dashboard</BreadcrumbPage>
+            <BreadcrumbPage>Attendance</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
       <PlaceholderContent>
-<<<<<<< HEAD
-        <></>
-      </PlaceholderContent>
-=======
 
         {/* <BentoGridDemo></BentoGridDemo> */}
 
-         <Dash></Dash>
+        {/* <ClassList></ClassList> */}
+
+        <Attendance></Attendance>
+        
 
       </PlaceholderContent>
 
->>>>>>> 2f268695705be58a24bcc69c9879b9ecbf6dc421
     </ContentLayout>
   );
 }
