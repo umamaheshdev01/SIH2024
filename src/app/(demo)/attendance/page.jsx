@@ -10,22 +10,23 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
-import { BentoGridDemo } from '@/components/ui/bentogrid'
+import {BentoGridDemo} from '@/components/ui/bentogrid'
 import { ClassList } from "@/components/component/class-list";
+import Attendance from "../../../components/Attendance";
 
 export default function DashboardPage() {
   return (
-    <ContentLayout title="Manage">
+    <ContentLayout title="Attendance">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href="/">Home</Link>
+              <Link href="/">Attendance</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Manage</BreadcrumbPage>
+            <BreadcrumbPage>Attendance</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -33,8 +34,10 @@ export default function DashboardPage() {
 
         {/* <BentoGridDemo></BentoGridDemo> */}
 
-        <ClassList></ClassList>
+        {/* <ClassList></ClassList> */}
 
+        <Attendance></Attendance>
+        
 
       </PlaceholderContent>
 

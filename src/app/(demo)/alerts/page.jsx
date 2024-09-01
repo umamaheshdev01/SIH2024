@@ -10,8 +10,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
-import { BentoGridDemo } from '@/components/ui/bentogrid'
-import { ClassList } from "@/components/component/class-list";
+
+import Alert from "@/components/ui/alert";
 
 export default function DashboardPage() {
   return (
@@ -30,14 +30,10 @@ export default function DashboardPage() {
         </BreadcrumbList>
       </Breadcrumb>
       <PlaceholderContent>
-
-        {/* <BentoGridDemo></BentoGridDemo> */}
-
-        <ClassList></ClassList>
-
-
+        <div>Placeholder Content</div> {/* Add test content */}
+        <Alert />
+        <div>Alert Component should be visible</div> {/* Add test content */}
       </PlaceholderContent>
-
     </ContentLayout>
   );
 }
